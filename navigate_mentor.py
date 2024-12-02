@@ -69,7 +69,7 @@ def enter_otp_on_website(url, delay):
     time.sleep(delay)  # Add delay before opening the website
     EMAIL = os.getenv("EMAIL")
     options = Options()
-    options.headless = False
+    options.add_argument('--headless=new')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     try:

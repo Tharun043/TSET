@@ -1,20 +1,19 @@
-import os
-import time
-import imaplib
-import email
-from email.header import decode_header
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor
-from dotenv import load_dotenv
+import time
+import os
+import email
+import imaplib
 
 load_dotenv()
 
@@ -69,7 +68,7 @@ def enter_otp_on_website(url, delay):
     time.sleep(delay)  # Add delay before opening the website
     EMAIL = os.getenv("EMAIL2")
     options = Options()
-    options.add_argument('--headless=new')
+    # Remove headless mode by not adding the '--headless' argument
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     try:

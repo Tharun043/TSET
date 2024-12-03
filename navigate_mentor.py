@@ -69,7 +69,7 @@ def enter_otp_on_website(url, delay):
     time.sleep(delay)  # Add delay before opening the website
     EMAIL = os.getenv("EMAIL")
     options = Options()
-    options.add_argument('--headless=new')
+    options.headless = False
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     try:
@@ -82,7 +82,7 @@ def enter_otp_on_website(url, delay):
 
         verify_button = driver.find_element(By.CSS_SELECTOR, "#button")
         verify_button.click()
-        time.sleep(5)  # Adjust this if page loads faster
+        time.sleep(10)  # Adjust this if page loads faster
 
         otp = get_otp_from_email()
         if otp:
@@ -148,5 +148,5 @@ if __name__ == "__main__":
     urls = [os.getenv("CRM_URL"), os.getenv("CRM_URL3")]
     with ThreadPoolExecutor(max_workers=len(urls)) as executor:
         # Add incremental delay for each URL
-        delays = [i * 30 for i in range(len(urls))]  # 30 seconds apart
+        delays = [i * 5 for i in range(len(urls))]  # 5 seconds apart
         executor.map(enter_otp_on_website, urls, delays)

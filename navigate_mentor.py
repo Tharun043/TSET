@@ -20,7 +20,7 @@ load_dotenv()
 
 def extract_otp_from_html(body):
     soup = BeautifulSoup(body, "html.parser")
-    otp_tag = soup.find("h1")  # Adjust based on your email structure
+    otp_tag = soup.find("h1")  
     if otp_tag:
         otp = otp_tag.get_text(strip=True)
         if otp.isdigit() and len(otp) == 6:
@@ -66,7 +66,7 @@ def get_otp_from_email():
     return None
 
 def enter_otp_on_website(url, delay):
-    time.sleep(delay)  # Add delay before opening the website
+    time.sleep(delay)  # Added delay before opening the website
     EMAIL = os.getenv("EMAIL")
     options = Options()
     options.headless = False

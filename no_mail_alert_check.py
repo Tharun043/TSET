@@ -67,7 +67,7 @@ def send_failure_email(error):
     msg['To'] = RECIPIENT_EMAIL
     msg['CC'] = CC_EMAIL
     msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'html'))  # Use 'html' to render the email correctly
+    msg.attach(MIMEText(body, 'html'))  # Used 'html' to render the email correctly
 
     try:
         # Sending Email
